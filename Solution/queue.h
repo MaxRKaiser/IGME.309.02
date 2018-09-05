@@ -11,6 +11,8 @@ public:
 
 	Queue(T* orData, int size);
 
+	Queue<T>& operator=(const Queue<T>& obj);
+
 	~Queue();
 
 	//globals
@@ -50,7 +52,7 @@ Queue<T>::Queue(int size)
 template <class T>
 Queue<T>::Queue(T* orData, int size)
 {
-	cout << "copy stack created" << endl;
+	cout << "copy queue created" << endl;
 	//create backup parameters
 	data2 = new T[size];
 	length2 = size;
@@ -75,7 +77,46 @@ Queue<T>::Queue(T* orData, int size)
 	this->length = length2;
 }
 
-//Push new data to the stack, expand stack if you run out of room
+//Copy Assignment Operator
+template <class T>
+Queue<T>& Queue<T>::operator=(const Queue<T>& obj)
+{
+	/*data = obj.data;
+	length = obj.length;
+	return *this;*/
+
+	cout << "copy assignment queue created" << endl;
+	//create backup parameters
+	data2 = new T[obj.length];
+	length2 = obj.length;
+
+	for (int i = 0; i < length2; i++)
+	{
+		//copy over the origin data to the new array
+		if (i <= obj.length)
+		{
+			T value = obj.data[i];
+			data2[i] = value;
+		}
+		//fill the remaining space with nulls
+		else
+		{
+			T value2 = NULL;
+			data2[i] = value2;
+		}
+	}
+
+	delete[] this->data;
+
+	//replace origin data with new array
+	this->data = data2;
+	this->length = length2;
+
+	return *this;
+}
+
+
+//Push new data to the queue, expand queue if you run out of room
 template <class T>
 void Queue<T>::Push(T stuff)
 {
@@ -87,7 +128,7 @@ void Queue<T>::Push(T stuff)
 			this->data[i] = stuff;
 			break;
 		}
-		//if stack size allocated is exceeded, make a bigger list and copy over data (similar to copy constructor)
+		//if queue size allocated is exceeded, make a bigger list and copy over data (similar to copy constructor)
 		else if (i == length - 1)
 		{
 			cout << "Queue size extended" << endl;
@@ -116,7 +157,7 @@ void Queue<T>::Push(T stuff)
 }
 
 
-//Remove the top element of the stack
+//Remove the top element of the queue
 template <class T>
 void Queue<T>::Pop()
 {
@@ -146,7 +187,7 @@ void Queue<T>::Print()
 	}
 }
 
-//Gets number of entries in the stack
+//Gets number of entries in the queue
 template <class T>
 int Queue<T>::GetSize()
 {

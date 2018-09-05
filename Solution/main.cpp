@@ -7,83 +7,110 @@
 int main()
 {
 	//INT TESTS
-	Queue <int> * st1 = new Queue<int>(4);
+	Queue <int> * q1 = new Queue<int>(4);
 	//initial state
-	st1->Print();
-	cout << "Entries: " << st1->GetSize() << endl;
-	if (st1->IsEmpty() == 1) cout << "Is it Empty?: " << "Yes" << endl;
+	cout << "Integer tests, first queue:" << endl;
+	q1->Print();
+	cout << "Entries: " << q1->GetSize() << endl;
+	if (q1->IsEmpty() == 1) cout << "Is it Empty?: " << "Yes" << endl;
 	else cout << "Is it Empty?: " << "No" << endl << endl;
 	//add stuff
-	st1->Push(1);
-	st1->Push(2);
-	st1->Push(3);
-	st1->Push(4);
-	st1->Push(5);
-	st1->Push(6);
+	q1->Push(1);
+	q1->Push(2);
+	q1->Push(3);
+	q1->Push(4);
+	q1->Push(5);
+	q1->Push(6);
 	//pop
-	st1->Pop();
+	q1->Pop();
 	//add more
-	st1->Push(7);
-	st1->Print();
+	q1->Push(7);
+	cout << "First queue after changes:" << endl;
+	q1->Print();
 	//final state
-	cout << "Entries: " << st1->GetSize() << endl;
-	if (st1->IsEmpty() == 1) cout << "Is it Empty?: " << "Yes" << endl;
+	cout << "Entries: " << q1->GetSize() << endl;
+	if (q1->IsEmpty() == 1) cout << "Is it Empty?: " << "Yes" << endl;
 	else cout << "Is it Empty?: " << "No" << endl << endl;
+
+
+
 
 	//FLOAT TESTS
-	Queue <float> * st2 = new Queue<float>(3);
+	Queue <float> * q2 = new Queue<float>(3);
 	//Initial state
-	st2->Print();
-	cout << "Entries: " << st2->GetSize() << endl;
-	if (st2->IsEmpty() == 1) cout << "Is it Empty?: " << "Yes" << endl;
+	cout << "Float tests, second queue:" << endl;
+	q2->Print();
+	cout << "Entries: " << q2->GetSize() << endl;
+	if (q2->IsEmpty() == 1) cout << "Is it Empty?: " << "Yes" << endl;
 	else cout << "Is it Empty?: " << "No" << endl << endl;
 	//add stuff, pop
-	st2->Push(1.0);
-	st2->Push(2.5);
-	st2->Push(10.5);
-	st2->Pop();
-	st2->Print();
+	q2->Push(1.0);
+	q2->Push(2.5);
+	q2->Push(10.5);
+	q2->Pop();
+	cout << "Second queue after changes:" << endl;
+	q2->Print();
 	//final state
-	if (st2->IsEmpty() == 1) cout << "Is it Empty?: " << "Yes" << endl;
+	if (q2->IsEmpty() == 1) cout << "Is it Empty?: " << "Yes" << endl;
 	else cout << "Is it Empty?: " << "No" << endl << endl;
 
+
+
+
 	//CHAR TESTS
-	Queue <char> * st3 = new Queue<char>(5);
-	//inital state
-	st3->Print();
-	cout << "Entries: " << st3->GetSize() << endl;
-	if (st3->IsEmpty() == 1) cout << "Is it Empty?: " << "Yes" << endl;
+	Queue <char> * q3 = new Queue<char>(5);
+	cout << "Char tests, third queue:" << endl;
+	q3->Print();
+	cout << "Entries: " << q3->GetSize() << endl;
+	if (q3->IsEmpty() == 1) cout << "Is it Empty?: " << "Yes" << endl;
 	else cout << "Is it Empty?: " << "No" << endl << endl;
 	//add stuff, pop, add, pop
-	st3->Push('q');
-	st3->Push('x');
-	st3->Pop();
-	st3->Push('f');
-	st3->Push('o');
-	st3->Push('o');
-	st3->Pop();
-	//final state
-	st3->Print();
-	if (st3->IsEmpty() == 1) cout << "Is it Empty?: " << "Yes" << endl;
+	q3->Push('q');
+	q3->Push('x');
+	q3->Pop();
+	q3->Push('f');
+	q3->Push('o');
+	q3->Push('o');
+	q3->Pop();
+	cout << "Third queue after changes:" << endl;
+	q3->Print();
+	if (q3->IsEmpty() == 1) cout << "Is it Empty?: " << "Yes" << endl;
 	else cout << "Is it Empty?: " << "No" << endl << endl;
+
+
+
 
 	//COPY TEST
 	//[HERE IS WHERE COPY CONSTRUCTOR IS USED]
-	Queue <int> * st1Cpy = new Queue<int>(st1->data, st1->length);
-	st1Cpy->Print();
+	Queue <int> * q1Cpy = new Queue<int>(q1->data, q1->length);
+	q1Cpy->Print();
 	cout << endl;
 
 	//[HERE IS WHERE COPY ASSIGNMENT IS USED]
-	Queue <float> * st2Cpy = new Queue<float>(3);
-	st2Cpy = st2;
-	st2Cpy->Print();
+	Queue <int> * q4 = new Queue<int>(4);
+	q4->Push(3);
+	q4->Push(2);
+	q4->Push(1);
+	cout << "first queue" << endl;
+	q4->Print();
+	*q4 = *q1;
+	cout << endl << "second queue" << endl;
+	q1->Print();
+	cout << endl << "New form of first queue" << endl;
+	q4->Print();
 
-	//cleanup [INCLUDE DESTRUCTOR CALL (IMPLICIT)]
-	delete st1;
-	delete st2;
-	delete st3;
-	delete st1Cpy;
 
+
+
+	//cleanup [DESTRUCTOR CALLED HERE, memory cleanup]
+	delete q1;
+	delete q2;
+	delete q3;
+	delete q4;
+	delete q1Cpy;
+
+	//hold application until input
+	cout << endl << "Hit enter to close this window" << endl;
 	getchar();
 	return 0;
 }
